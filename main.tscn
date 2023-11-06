@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://oso1xfcnujiu"]
+[gd_scene load_steps=15 format=3 uid="uid://oso1xfcnujiu"]
 
+[ext_resource type="Script" path="res://tcpServ.gd" id="1_q8ocq"]
 [ext_resource type="Script" path="res://cameraRig.gd" id="1_tsjq1"]
 [ext_resource type="Script" path="res://controller.gd" id="2_8gm7n"]
 [ext_resource type="Script" path="res://base.gd" id="2_ix6fo"]
@@ -42,6 +43,9 @@ height = 0.4
 albedo_color = Color(1, 0, 0.0196078, 1)
 
 [node name="root" type="Node3D"]
+
+[node name="tcpServ" type="Node" parent="."]
+script = ExtResource("1_q8ocq")
 
 [node name="misc" type="Node" parent="."]
 
