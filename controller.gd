@@ -2,8 +2,8 @@ extends Node
 
 const HEIGHT = 4.0
 
-const X = -2.0
-const Y = -1.732
+const X = .0
+const Y = .0
 
 var x = X
 var y = Y
