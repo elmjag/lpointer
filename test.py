@@ -3,37 +3,21 @@
 import time
 from puck_pos import get_puck_xy
 from angles import pos2angles
-from client import set_angles
+from tango_client import TangoClient
+from local_client import LocalClient
+from util import clamp
 
 
 def pos_angles(puck_pos):
     x, y = get_puck_xy(puck_pos)
     base, mount = pos2angles(x, y)
     assert -90 <= base <= 90, "bad base"
+
+    base = clamp("base", base, -87.0, 90.0)
+    mount = clamp("mount", mount, -7.8, 8.0)
+
     print(f"{puck_pos} x {x:.3f} y {y:.3f} base {base:.3f} mount {mount:.3f}")
     return base, mount
-
-
-def mark_all_pos():
-    for puck_pos in range(1, 30):
-        x, y = get_puck_xy(puck_pos)
-        base, mount = pos2angles(x, y)
-
-        print(f"{puck_pos} ({x},{y}) {mount=} {base=}")
-        set_angles(base, mount)
-        time.sleep(2)
-
-
-def oscillate():
-    for mount in range(-30, 31, 1):
-        for base in range(0, 60, 1):
-            set_angles(base, mount)
-            time.sleep(0.5)
-
-
-def misc_angles():
-    # set_angles(45, 30)
-    set_angles(-45, 30)
 
 
 def misc_mount_angles():
@@ -60,11 +44,13 @@ def misc_base_angles():
     print(pos, base)
 
 
-def mark_positions(positions):
+def mark_positions(client, positions):
     for pos in positions:
         base, mount = pos_angles(pos)
-        set_angles(base, mount)
+        client.set_angles(base, mount)
         time.sleep(0.8)
 
 
-mark_positions(range(1, 30))
+# client = TangoClient()
+client = LocalClient()
+mark_positions(client, range(1, 30))
