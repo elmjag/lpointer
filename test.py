@@ -8,8 +8,9 @@ from client import set_angles
 
 def pos_angles(puck_pos):
     x, y = get_puck_xy(puck_pos)
-    print(f"{x=} {y=}")
-    return pos2angles(x, y)
+    base, mount = pos2angles(x, y)
+    print(f"{puck_pos} x {x:.3f} y {y:.3f} base {base:.3f} mount {mount:.3f}")
+    return base, mount
 
 
 def mark_all_pos():

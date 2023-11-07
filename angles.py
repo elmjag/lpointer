@@ -38,7 +38,15 @@ def _rad_to_deg(rad: float) -> float:
 
 
 def pos2angles(x: float, y: float) -> tuple[float, float]:
-    base = _rad_to_deg(_get_base_rotation(x, y))
-    mount = _rad_to_deg(_get_mount_rotation(x, y))
+    base = _get_base_rotation(x, y)
+    mount = _get_mount_rotation(x, y)
 
-    return base, mount
+    # base rotation range is approximately -pi to pi,
+    # when pointing to position on the negative side of x-axis,
+    # mirror base angle, and use negative mount angle
+    if x < 0:
+        base -= pi
+        mount = -mount
+
+
+    return _rad_to_deg(base), _rad_to_deg(mount)
