@@ -9,6 +9,7 @@ from client import set_angles
 def pos_angles(puck_pos):
     x, y = get_puck_xy(puck_pos)
     base, mount = pos2angles(x, y)
+    assert -90 <= base <= 90, "bad base"
     print(f"{puck_pos} x {x:.3f} y {y:.3f} base {base:.3f} mount {mount:.3f}")
     return base, mount
 
@@ -62,7 +63,6 @@ def misc_base_angles():
 def mark_positions(positions):
     for pos in positions:
         base, mount = pos_angles(pos)
-        print(pos, base, mount)
         set_angles(base, mount)
         time.sleep(0.8)
 

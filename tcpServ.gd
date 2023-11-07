@@ -7,8 +7,8 @@ var _base
 var _mount
 
 func _ready():
-	_base = get_node("/root/root/base")
-	_mount = get_node("/root/root/base/braket/mount")
+	_base = get_node("/root/root/braket/base")
+	_mount = get_node("/root/root/braket/base/braket/mount")
 	
 	var res = tcp_server.listen(PORT, "0.0.0.0")
 	if res != OK:

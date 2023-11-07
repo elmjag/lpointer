@@ -1,6 +1,8 @@
 from math import atan, sqrt, pi, isclose
+from util import deg_to_rad, rad_to_deg
 
 HEIGHT = 1.46
+BASE_ROTATION_OFFSET = 42.0
 
 
 def _get_base_rotation(x, y):
@@ -18,10 +20,22 @@ def _get_base_rotation(x, y):
             # we need to point 'south' of the axis origin
             return -pi / 2
 
-    ang = atan(y / abs(x))
+    ang = atan(abs(y) / abs(x))
 
     if x < 0.0:
-        ang = pi - ang
+        if y < 0.0:
+            # -x -y
+            ang = pi + ang
+        else:
+            # -x +y
+            ang = pi - ang
+    else:
+        if y < 0.0:
+            # +x -y
+            ang = 2 * pi - ang
+        else:
+            # +x +y
+            pass
 
     return ang
 
@@ -33,20 +47,19 @@ def _get_mount_rotation(x, y):
     return ang
 
 
-def _rad_to_deg(rad: float) -> float:
-    return rad * (180.0 / pi)
-
-
 def pos2angles(x: float, y: float) -> tuple[float, float]:
-    base = _get_base_rotation(x, y)
-    mount = _get_mount_rotation(x, y)
+    base = rad_to_deg(_get_base_rotation(x, y)) + BASE_ROTATION_OFFSET
+    mount = rad_to_deg(_get_mount_rotation(x, y))
 
-    # base rotation range is approximately -pi to pi,
-    # when pointing to position on the negative side of x-axis,
-    # mirror base angle, and use negative mount angle
-    if x < 0:
-        base -= pi
-        mount = -mount
+    # the lazer pointer's rotation range is approximately -90 deg to +90 deg
+    #
+    # the base angle we calculate is between 0 and 360 degrees,
+    # convert that angle to supported range, flipping mount angle if needed
+    if base >= 90.0:
+        if base >= 270.0:
+            base = -(360 - base)
+        else:
+            base = base - 180
+            mount = -mount
 
-
-    return _rad_to_deg(base), _rad_to_deg(mount)
+    return base, mount

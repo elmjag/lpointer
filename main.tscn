@@ -1,8 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://oso1xfcnujiu"]
+[gd_scene load_steps=14 format=3 uid="uid://oso1xfcnujiu"]
 
 [ext_resource type="Script" path="res://tcpServ.gd" id="1_q8ocq"]
 [ext_resource type="Script" path="res://cameraRig.gd" id="1_tsjq1"]
-[ext_resource type="Script" path="res://controller.gd" id="2_8gm7n"]
 [ext_resource type="Script" path="res://base.gd" id="2_ix6fo"]
 [ext_resource type="Script" path="res://mount.gd" id="3_t1syy"]
 
@@ -64,7 +63,6 @@ transform = Transform3D(1, 0, 0, 0, 0.946204, 0.323571, 0, -0.323571, 0.946204, 
 transform = Transform3D(0.996382, -0.0367397, 0.0766301, 0, 0.901719, 0.432322, -0.0849822, -0.430758, 0.898457, 0, 17.8668, 16.1272)
 
 [node name="controller" type="Node" parent="."]
-script = ExtResource("2_8gm7n")
 
 [node name="row1" type="Node" parent="."]
 
@@ -236,21 +234,25 @@ mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
-[node name="base" type="MeshInstance3D" parent="."]
+[node name="braket" type="Node3D" parent="."]
+transform = Transform3D(0.743145, 0, -0.669131, 0, 1, 0, 0.669131, 0, 0.743145, 0, 0, 0)
+
+[node name="base" type="MeshInstance3D" parent="braket"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 mesh = SubResource("BoxMesh_02nsi")
+skeleton = NodePath("../..")
 script = ExtResource("2_ix6fo")
 
-[node name="braket" type="MeshInstance3D" parent="base"]
+[node name="braket" type="MeshInstance3D" parent="braket/base"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, 0.05)
 mesh = SubResource("BoxMesh_shq50")
 
-[node name="mount" type="MeshInstance3D" parent="base/braket"]
+[node name="mount" type="MeshInstance3D" parent="braket/base/braket"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
 mesh = SubResource("CylinderMesh_j12wo")
 script = ExtResource("3_t1syy")
 
-[node name="laser" type="MeshInstance3D" parent="base/braket/mount"]
+[node name="laser" type="MeshInstance3D" parent="braket/base/braket/mount"]
 mesh = SubResource("CylinderMesh_uh8i1")
 script = SubResource("GDScript_ndilb")
 
