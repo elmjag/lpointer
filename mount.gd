@@ -1,6 +1,6 @@
 extends MeshInstance3D
 
-const SPEED = 0.4
+const SPEED = 0.08
 
 enum {
 	NONE,

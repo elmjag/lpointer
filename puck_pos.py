@@ -1,7 +1,7 @@
 from math import sqrt
 from dataclasses import dataclass
 
-PUCK_DIAMETER = 1.0
+PUCK_DIAMETER = 0.07795
 
 ROW_Y_OFFSET = sqrt(PUCK_DIAMETER**2 - (PUCK_DIAMETER / 2) ** 2)
 

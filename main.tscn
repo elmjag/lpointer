@@ -7,25 +7,27 @@
 [ext_resource type="Script" path="res://mount.gd" id="3_t1syy"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_t7evu"]
-height = 0.2
+top_radius = 0.039
+bottom_radius = 0.039
+height = 0.01
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tcyao"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_02nsi"]
-size = Vector3(0.5, 0.6, 0.8)
+size = Vector3(0.1, 0.12, 0.16)
 
 [sub_resource type="BoxMesh" id="BoxMesh_shq50"]
-size = Vector3(0.5, 1, 0.2)
+size = Vector3(0.1, 0.2, 0.06)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_j12wo"]
-top_radius = 0.4
-bottom_radius = 0.4
-height = 0.2
+top_radius = 0.08
+bottom_radius = 0.08
+height = 0.04
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_uh8i1"]
-top_radius = 0.04
-bottom_radius = 0.04
-height = 12.0
+top_radius = 0.004
+bottom_radius = 0.004
+height = 8.0
 
 [sub_resource type="GDScript" id="GDScript_ndilb"]
 script/source = "extends MeshInstance3D
@@ -36,8 +38,8 @@ func _ready():
 "
 
 [sub_resource type="SphereMesh" id="SphereMesh_a21g6"]
-radius = 0.2
-height = 0.4
+radius = 0.01
+height = 0.02
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_14e8x"]
 albedo_color = Color(1, 0, 0.0196078, 1)
@@ -47,18 +49,18 @@ albedo_color = Color(1, 0, 0.0196078, 1)
 [node name="tcpServ" type="Node" parent="."]
 script = ExtResource("1_q8ocq")
 
-[node name="misc" type="Node" parent="."]
+[node name="rendering" type="Node" parent="."]
 
-[node name="cameraRig" type="Node3D" parent="misc"]
+[node name="cameraRig" type="Node3D" parent="rendering"]
 transform = Transform3D(1, 0, 0, 0, 0.945354, 0.326047, 0, -0.326047, 0.945354, 0, 0, 0)
 script = ExtResource("1_tsjq1")
 
-[node name="horizontal" type="Node3D" parent="misc/cameraRig"]
+[node name="horizontal" type="Node3D" parent="rendering/cameraRig"]
 
-[node name="camera" type="Camera3D" parent="misc/cameraRig/horizontal"]
-transform = Transform3D(1, 0, 0, 0, 1, 5.96046e-08, 0, -8.9407e-08, 1, 0, -0.0439904, 8.48081)
+[node name="camera" type="Camera3D" parent="rendering/cameraRig/horizontal"]
+transform = Transform3D(1, 0, 0, 0, 0.946204, 0.323571, 0, -0.323571, 0.946204, 0, 0.246524, 0.833014)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="misc"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="rendering"]
 transform = Transform3D(0.996382, -0.0367397, 0.0766301, 0, 0.901719, 0.432322, -0.0849822, -0.430758, 0.898457, 0, 17.8668, 16.1272)
 
 [node name="controller" type="Node" parent="."]
@@ -67,64 +69,64 @@ script = ExtResource("2_8gm7n")
 [node name="row1" type="Node" parent="."]
 
 [node name="puck1" type="MeshInstance3D" parent="row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156, 0, -0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck4")
 
 [node name="puck2" type="MeshInstance3D" parent="row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.078, 0, -0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck4")
 
 [node name="puck3" type="MeshInstance3D" parent="row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../..")
 
 [node name="puck4" type="MeshInstance3D" parent="row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.078, 0, -0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../..")
 
 [node name="puck5" type="MeshInstance3D" parent="row1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.156, 0, -0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck4")
 
 [node name="row2" type="Node" parent="."]
 
 [node name="puck6" type="MeshInstance3D" parent="row2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, -0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.195, 0, -0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck7" type="MeshInstance3D" parent="row2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117, 0, -0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck8" type="MeshInstance3D" parent="row2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039, 0, -0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck9" type="MeshInstance3D" parent="row2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, -0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039, 0, -0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck10" type="MeshInstance3D" parent="row2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117, 0, -0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck11" type="MeshInstance3D" parent="row2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, -0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.195, 0, -0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
@@ -132,12 +134,12 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 [node name="row3" type="Node" parent="."]
 
 [node name="puck12" type="MeshInstance3D" parent="row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156, 0, 0)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck15")
 
 [node name="puck13" type="MeshInstance3D" parent="row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.078, 0, 0)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck15")
 
@@ -146,49 +148,49 @@ mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../..")
 
 [node name="puck15" type="MeshInstance3D" parent="row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.078, 0, 0)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../..")
 
 [node name="puck16" type="MeshInstance3D" parent="row3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.156, 0, 0)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck15")
 
 [node name="row4" type="Node" parent="."]
 
 [node name="puck17" type="MeshInstance3D" parent="row4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 0, 0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.195, 0, 0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck18" type="MeshInstance3D" parent="row4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.117, 0, 0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck19" type="MeshInstance3D" parent="row4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039, 0, 0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck20" type="MeshInstance3D" parent="row4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039, 0, 0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck21" type="MeshInstance3D" parent="row4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.117, 0, 0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck22" type="MeshInstance3D" parent="row4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 0.866)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.195, 0, 0.068)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
@@ -196,55 +198,55 @@ surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 [node name="row5" type="Node" parent="."]
 
 [node name="puck23" type="MeshInstance3D" parent="row5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.156, 0, 0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck26")
 
 [node name="puck24" type="MeshInstance3D" parent="row5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.078, 0, 0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck26")
 
 [node name="puck25" type="MeshInstance3D" parent="row5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../..")
 
 [node name="puck26" type="MeshInstance3D" parent="row5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.078, 0, 0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../..")
 
 [node name="puck27" type="MeshInstance3D" parent="row5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1.732)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.156, 0, 0.135)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../puck26")
 
 [node name="row6" type="Node" parent="."]
 
 [node name="puck28" type="MeshInstance3D" parent="row6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 2.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.039, 0, 0.203)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="puck29" type="MeshInstance3D" parent="row6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 2.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.039, 0, 0.203)
 mesh = SubResource("CylinderMesh_t7evu")
 skeleton = NodePath("../MeshInstance3D2")
 surface_material_override/0 = SubResource("StandardMaterial3D_tcyao")
 
 [node name="base" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62, 0)
 mesh = SubResource("BoxMesh_02nsi")
 script = ExtResource("2_ix6fo")
 
 [node name="braket" type="MeshInstance3D" parent="base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16, 0.05)
 mesh = SubResource("BoxMesh_shq50")
 
 [node name="mount" type="MeshInstance3D" parent="base/braket"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -0.3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.05)
 mesh = SubResource("CylinderMesh_j12wo")
 script = ExtResource("3_t1syy")
 
@@ -253,6 +255,5 @@ mesh = SubResource("CylinderMesh_uh8i1")
 script = SubResource("GDScript_ndilb")
 
 [node name="point" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.673725, 0, 3.90721)
 mesh = SubResource("SphereMesh_a21g6")
 surface_material_override/0 = SubResource("StandardMaterial3D_14e8x")

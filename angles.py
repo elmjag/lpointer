@@ -1,6 +1,6 @@
 from math import atan, sqrt, pi, isclose
 
-HEIGHT = 4.0
+HEIGHT = 1.46
 
 
 def _get_base_rotation(x, y):
