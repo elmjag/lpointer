@@ -1,8 +1,7 @@
 from math import atan, sqrt, pi, isclose
 from util import deg_to_rad, rad_to_deg
+from params import HEIGHT, BASE_ROTATION_OFFSET
 
-HEIGHT = 1.46
-BASE_ROTATION_OFFSET = 42.0
 
 
 def _get_base_rotation(x, y):
