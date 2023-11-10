@@ -13,6 +13,9 @@ def pos_angles(puck_pos):
     base, mount = pos2angles(x, y)
     assert -90 <= base <= 90, "bad base"
 
+    base = -base
+    mount = -mount
+
     base = clamp("base", base, -87.0, 90.0)
     mount = clamp("mount", mount, -7.8, 8.0)
 
